@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1b1f2a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Deutsch SRS">
+<title>German 1000 · Spaced Repetition</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Deutsch<span>1000</span></div>
+  <button id="statsBtn" class="icon-btn" aria-label="Stats">📊</button>
+</header>
+
+<main id="app">
+
+  <!-- HOME / DASHBOARD -->
+  <section id="view-home" class="view">
+    <div class="stat-row">
+      <div class="stat-card due">
+        <div class="stat-num" id="dueCount">0</div>
+        <div class="stat-label">Due now</div>
+      </div>
+      <div class="stat-card new">
+        <div class="stat-num" id="newCount">0</div>
+        <div class="stat-label">New today</div>
+      </div>
+      <div class="stat-card learned">
+        <div class="stat-num" id="learnedCount">0</div>
+        <div class="stat-label">Learned</div>
+      </div>
+    </div>
+
+    <button id="startBtn" class="primary-btn">Start Review</button>
+
+    <div class="settings-block">
+      <label class="settings-row">
+        <span>New cards per day</span>
+        <input type="number" id="newPerDaySetting" min="0" max="200" value="20">
+      </label>
+    </div>
+
+    <p class="hint" id="emptyHint"></p>
+  </section>
+
+  <!-- REVIEW VIEW -->
+  <section id="view-review" class="view hidden">
+    <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+
+    <div class="card-wrap">
+      <div id="flashcard" class="flashcard">
+        <div class="card-face card-front">
+          <div class="pos-tag" id="posTag"></div>
+          <div class="german-word" id="germanWord"></div>
+          <div class="tap-hint">tap to flip</div>
+        </div>
+        <div class="card-face card-back hidden">
+          <div class="back-english" id="backEnglish"></div>
+          <hr>
+          <div class="back-sentence-de" id="backSentenceDE"></div>
+          <div class="back-sentence-en" id="backSentenceEN"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gradeButtons" class="grade-buttons hidden">
+      <button class="grade-btn again" data-grade="again">
+        <span class="grade-label">Again</span><span class="grade-interval" id="ivAgain"></span>
+      </button>
+      <button class="grade-btn hard" data-grade="hard">
+        <span class="grade-label">Hard</span><span class="grade-interval" id="ivHard"></span>
+      </button>
+      <button class="grade-btn good" data-grade="good">
+        <span class="grade-label">Good</span><span class="grade-interval" id="ivGood"></span>
+      </button>
+      <button class="grade-btn easy" data-grade="easy">
+        <span class="grade-label">Easy</span><span class="grade-interval" id="ivEasy"></span>
+      </button>
+    </div>
+
+    <button id="flipBtn" class="flip-btn">Show Answer</button>
+    <button id="exitReviewBtn" class="text-btn">← Back to dashboard</button>
+  </section>
+
+  <!-- DONE VIEW -->
+  <section id="view-done" class="view hidden">
+    <div class="done-emoji">🎉</div>
+    <h2>All caught up!</h2>
+    <p id="doneMsg"></p>
+    <button id="doneBackBtn" class="primary-btn">Back to dashboard</button>
+  </section>
+
+  <!-- STATS VIEW -->
+  <section id="view-stats" class="view hidden">
+    <h2>Your progress</h2>
+    <div id="statsBody"></div>
+    <button id="statsBackBtn" class="primary-btn">Back</button>
+    <button id="resetBtn" class="text-btn danger">Reset all progress</button>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
